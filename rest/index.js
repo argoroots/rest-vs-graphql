@@ -2,9 +2,9 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 
-app.locals.authors = require('../../data/authors.json')
-app.locals.posts = require('../../data/posts.json')
-app.locals.comments = require('../../data/comments.json')
+app.locals.authors = require('../data/authors.json')
+app.locals.posts = require('../data/posts.json')
+app.locals.comments = require('../data/comments.json')
 
 app.use(express.json())
 
