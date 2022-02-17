@@ -1,4 +1,5 @@
 {
+  "name": "rest-example",
   "version": "1.0.0",
   "description": "",
   "author": "Argo Roots <argo@roots.ee>",
@@ -9,7 +10,7 @@
     "node": "16"
   },
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon ./src/index.js",
     "lint": "eslint ./ --fix --ignore-path ../.gitignore --ext .js"
   },
   "dependencies": {
