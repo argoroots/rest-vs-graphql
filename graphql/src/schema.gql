@@ -1,19 +1,44 @@
-type Query {
-  posts: [Post]
-  post(id: ID!): Post
-  authors: [Person]
-  author(id: ID!): Person
-}
 
-type Post {
-  id: ID!
-  author: Person
-  body: String
+"Queries are for geting data from server. Read more [here](https://graphql.org/learn/queries/)."
+type Query {
+  "Returns list of authors."
+  authors: [Person]
+  "Returns one author by id."
+  author(id: ID!): Person
+  "Returns list of blog posts."
+  posts(last: Int = 3): [Post]
+  "Returns one blog post by id."
+  post(id: ID!): Post
 }
 
 type Person {
   id: ID!
+  email: String
+  name: String
+  status: Status
+  "Reference to author posts"
   posts: [Post]
-  firstName: String
-  lastName: String
+}
+
+type Post {
+  id: ID!
+  "Reference to post's author"
+  author: Person
+  created_at: Int
+  title: String
+  body: String
+  comments: [Comment]
+}
+
+type Comment {
+  id: ID!
+  post: Post
+  created_at: Int
+  author: String
+  body: String
+}
+
+enum Status {
+  active
+  inactive
 }
