@@ -1,6 +1,8 @@
 const express = require('express')
-const app = express()
+
 const port = process.env.PORT || 3000
+
+const app = express()
 
 app.locals.authors = require('../data/authors.json')
 app.locals.posts = require('../data/posts.json')
