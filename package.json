@@ -11,7 +11,7 @@
   "scripts": {
     "dev:rest": "nodemon -e js,gql ./rest/index.js",
     "dev:graphql": "nodemon -e js,gql ./graphql/index.js",
-    "lint": "eslint ./ --fix --ignore-path ../.gitignore --ext .js"
+    "lint": "eslint ./ --fix --ignore-path .gitignore --ext .js"
   },
   "dependencies": {
     "express": "4.17.3",
