@@ -1,7 +1,7 @@
 {
     "User": {
         "name": {
-            "regexp": "[A-Z][a-z]{5,10}"
+            "regexp": "[A-Z][a-z]{5,10} [A-Z][a-z]{5,10}"
         },
         "statusMessage": {
             "string": [
@@ -25,14 +25,14 @@
         },
         "title": {
             "loremSentences": {
-                "minLength": 1,
-                "maxLength": 1
+                "minLength": 5,
+                "maxLength": 50
             }
         },
         "body": {
             "loremParagraphs": {
-                "minLength": 2,
-                "maxLength": 10
+                "minLength": 100,
+                "maxLength": 300
             }
         },
         "createdAt": {
