@@ -1,19 +1,13 @@
 {
-    "User": {
+    "Author": {
         "name": {
             "regexp": "[A-Z][a-z]{5,10} [A-Z][a-z]{5,10}"
-        },
-        "statusMessage": {
-            "string": [
-                "working from home",
-                "watching Netflix"
-            ]
         },
         "email": {
             "regexp": "[a-z]{5,10}@[a-z]{5}\\.[a-z]{2,3}"
         },
-        "isPublic": {
-            "boolean": {}
+        "status": {
+            "string": ["active", "inactive"]
         },
         "posts": {
             "hasMany": "Post"
@@ -21,13 +15,33 @@
     },
     "Post": {
         "author": {
-            "belongsTo": "User"
+            "belongsTo": "Author"
         },
         "title": {
             "loremSentences": {
                 "minLength": 5,
                 "maxLength": 50
             }
+        },
+        "body": {
+            "loremParagraphs": {
+                "minLength": 100,
+                "maxLength": 300
+            }
+        },
+        "createdAt": {
+            "dateTime": {
+                "min": "2010-01-01T00:00:00Z",
+                "max": "2020-12-31T23:59:59Z"
+            }
+        }
+    },
+    "Comment": {
+        "post": {
+            "belongsTo": "Post"
+        },
+        "author": {
+            "regexp": "[A-Z][a-z]{5,10} [A-Z][a-z]{5,10}"
         },
         "body": {
             "loremParagraphs": {
