@@ -24,15 +24,15 @@
             "belongsTo": "User"
         },
         "title": {
-            "loremWords": {
-                "minLength": 5,
-                "maxLength": 20
+            "loremSentences": {
+                "minLength": 1,
+                "maxLength": 1
             }
         },
         "body": {
-            "loremSentences": {
-                "minLength": 20,
-                "maxLength": 100
+            "loremParagraphs": {
+                "minLength": 2,
+                "maxLength": 10
             }
         },
         "createdAt": {
