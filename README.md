@@ -1,2 +1,2 @@
-# rest-vs-graphql
- Example REST and GraphQL server
+# REST vs GraphQL
+ Example REST and GraphQL servers
