@@ -2,16 +2,16 @@
 "Queries are for geting data from server. Read more [here](https://graphql.org/learn/queries/)."
 type Query {
   "Returns list of authors."
-  authors: [Person]
+  authors: [Author]
   "Returns one author by id."
-  author(id: ID!): Person
+  author(id: ID!): Author
   "Returns list of blog posts."
   posts(last: Int = 3): [Post]
   "Returns one blog post by id."
   post(id: ID!): Post
 }
 
-type Person {
+type Author {
   id: ID!
   email: String
   name: String
@@ -23,7 +23,7 @@ type Person {
 type Post {
   id: ID!
   "Reference to post's author"
-  author: Person
+  author: Author
   created_at: Int
   title: String
   body: String
