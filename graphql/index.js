@@ -13,7 +13,7 @@ const app = express()
 
 app.use('/', graphqlHTTP({
   schema: makeExecutableSchema({ typeDefs: schemaFile, resolvers }),
-  graphiql: process.env.NODE_ENV !== 'production'
+  graphiql: true
 }))
 
 app.listen(port, () => {
