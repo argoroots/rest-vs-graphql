@@ -15,8 +15,8 @@ type Author {
   email: String
   name: String
   status: Status
-  "Reference to author posts."
-  posts: [Post]
+  "List of author posts."
+  posts(last: Int = 5): [Post]
 }
 
 type Post {
@@ -26,7 +26,8 @@ type Post {
   created_at(format: String): String!
   title: String
   body: String
-  comments: [Comment]
+  "List of post comments."
+  comments(last: Int = 5): [Comment]
 }
 
 type Comment {
@@ -48,4 +49,8 @@ type Mutation {
   submitPost(author_id: Int!, title: String, body: String): Post
   "Creates new comment."
   submitComment(post_id: Int!, author: String, body: String): Comment
+}
+
+type Subscription {
+  commentAdded(postID: ID!): Comment
 }
