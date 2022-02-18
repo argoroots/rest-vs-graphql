@@ -1,21 +1,22 @@
 const fs = require('fs')
 const path = require('path')
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { makeExecutableSchema } = require('@graphql-tools/schema')
+const { GraphQLServer, PubSub } = require('graphql-yoga')
 
-const port = process.env.PORT || 4000
+const typeDefs = fs.readFileSync(path.join(__dirname, './schema.gql'), { encoding: 'utf8', flag: 'r' })
+const resolvers = require('./resolvers')
 
-const schemaFile = fs.readFileSync(path.join(__dirname, './schema.gql'), { encoding: 'utf8', flag: 'r' })
+const server = new GraphQLServer({
+  typeDefs,
+  resolvers,
+  context: {
+    pubsub: new PubSub()
+  }
+})
 
-const resolvers = require('./resolvers.js')
-const app = express()
+const options = {
+  port: process.env.PORT || 4000
+}
 
-app.use('/', graphqlHTTP({
-  schema: makeExecutableSchema({ typeDefs: schemaFile, resolvers }),
-  graphiql: true
-}))
-
-app.listen(port, () => {
+server.start(options, ({ port }) => {
   console.log(`GraphQL server listening on port ${port}`)
 })
