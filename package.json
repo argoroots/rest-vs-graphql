@@ -11,6 +11,8 @@
   "scripts": {
     "dev:rest": "nodemon -e js,gql ./rest/index.js",
     "dev:graphql": "nodemon -e js,gql ./graphql/index.js",
+    "start:rest": "node ./rest/index.js",
+    "start:graphql": "node ./graphql/index.js",
     "lint": "eslint ./ --fix --ignore-path .gitignore --ext .js"
   },
   "dependencies": {
