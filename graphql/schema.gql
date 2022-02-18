@@ -15,13 +15,13 @@ type Author {
   email: String
   name: String
   status: Status
-  "Reference to author posts"
+  "Reference to author posts."
   posts: [Post]
 }
 
 type Post {
   id: ID!
-  "Reference to post's author"
+  "Reference to post's author."
   author: Author!
   created_at: String!
   title: String
@@ -44,20 +44,8 @@ enum Status {
 
 "Mutations are for changing data in server. Read more [here](https://graphql.org/learn/queries/#mutations)."
 type Mutation {
-  submitPost(input: PostInput!): Post
-  submitComment(input: CommentInput!): Comment
-}
-
-input PostInput {
-  id: ID
-  author_id: Int!
-  title: String
-  body: String
-}
-
-input CommentInput {
-  id: ID
-  post_id: Int!
-  author: String
-  body: String
+  "Creates new post."
+  submitPost(author_id: Int!, title: String, body: String): Post
+  "Creates new comment."
+  submitComment(post_id: Int!, author: String, body: String): Comment
 }
