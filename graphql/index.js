@@ -11,9 +11,9 @@ const schemaFile = fs.readFileSync(path.join(__dirname, './schema.gql'), { encod
 const resolvers = require('./resolvers.js')
 const app = express()
 
-app.use('/graphql', graphqlHTTP({
   schema: makeExecutableSchema({ typeDefs: schemaFile, resolvers }),
   graphiql: process.env.NODE_ENV !== 'production'
+app.use('/', graphqlHTTP({
 }))
 
 app.listen(port, () => {
