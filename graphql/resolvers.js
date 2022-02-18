@@ -44,7 +44,7 @@ function submitPost (obj, args) {
   return post
 }
 
-function submitComment (obj, args) {
+function submitComment (obj, args, { pubsub }) {
   const post = allPosts.find(a => a.id === parseInt(args.post_id))
 
   if (!post) {
@@ -60,6 +60,10 @@ function submitComment (obj, args) {
   }
 
   allComments.push(comment)
+
+  pubsub.publish('commentAdded', {
+    commentAdded: comment
+  })
 
   return comment
 }
@@ -90,6 +94,13 @@ module.exports = {
   Mutation: {
     submitPost,
     submitComment
+  },
+  Subscription: {
+    commentAdded: {
+      subscribe (parent, args, { pubsub }) {
+        return pubsub.asyncIterator('commentAdded')
+      }
+    }
   },
   Author: {
     posts: authorPosts
