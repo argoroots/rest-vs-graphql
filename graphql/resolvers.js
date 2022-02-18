@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const allAuthors = require('../data/authors.json')
 const allPosts = require('../data/posts.json')
 const allComments = require('../data/comments.json')
@@ -70,6 +72,10 @@ function postComments (post) {
   return allComments.filter(c => c.post_id === parseInt(post.id))
 }
 
+function postCreatedAt (post, args) {
+  return moment(post.created_at).format(args.format)
+}
+
 module.exports = {
   Query: {
     authors,
@@ -86,6 +92,7 @@ module.exports = {
   },
   Post: {
     author: postAuthor,
-    comments: postComments
+    comments: postComments,
+    created_at: postCreatedAt
   }
 }
