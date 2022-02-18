@@ -4,8 +4,12 @@ const allAuthors = require('../data/authors.json')
 const allPosts = require('../data/posts.json')
 const allComments = require('../data/comments.json')
 
-function authors () {
-  return allAuthors
+function authors (obj, args) {
+  if (args.status) {
+    return allAuthors.filter(a => a.status === args.status)
+  } else {
+    return allAuthors
+  }
 }
 
 function author (obj, args) {
