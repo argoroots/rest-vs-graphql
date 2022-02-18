@@ -1,4 +1,3 @@
-
 "Queries are for geting data from server. Read more [here](https://graphql.org/learn/queries/)."
 type Query {
   "Returns list of authors."
@@ -23,8 +22,8 @@ type Author {
 type Post {
   id: ID!
   "Reference to post's author"
-  author: Author
-  created_at: Int
+  author: Author!
+  created_at: String!
   title: String
   body: String
   comments: [Comment]
@@ -32,8 +31,8 @@ type Post {
 
 type Comment {
   id: ID!
-  post: Post
-  created_at: Int
+  post: Post!
+  created_at: String!
   author: String
   body: String
 }
@@ -41,4 +40,24 @@ type Comment {
 enum Status {
   active
   inactive
+}
+
+"Mutations are for changing data in server. Read more [here](https://graphql.org/learn/queries/#mutations)."
+type Mutation {
+  submitPost(input: PostInput!): Post
+  submitComment(input: CommentInput!): Comment
+}
+
+input PostInput {
+  id: ID
+  author_id: Int!
+  title: String
+  body: String
+}
+
+input CommentInput {
+  id: ID
+  post_id: Int!
+  author: String
+  body: String
 }
