@@ -1,15 +1,15 @@
 const fs = require('fs')
 const path = require('path')
-const { GraphQLServer, PubSub } = require('graphql-yoga')
+const { createServer, createPubSub } = require('@graphql-yoga/node')
 
 const typeDefs = fs.readFileSync(path.join(__dirname, './schema.gql'), { encoding: 'utf8', flag: 'r' })
 const resolvers = require('./resolvers')
 
-const server = new GraphQLServer({
+const server = createServer({
   typeDefs,
   resolvers,
   context: {
-    pubsub: new PubSub()
+    pubsub: createPubSub()
   }
 })
 
